@@ -1,0 +1,61 @@
+body {
+    margin: 0;
+}
+
+.nav-bar {
+    background-color: #232f3e;
+    width: 100%;
+    height: 50px;
+}
+
+#app {
+    padding: 20px;
+}
+
+.product {
+    display: flex;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+}
+
+hr {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.img {
+    height: 500px;
+    width: 500px;
+    padding-right: 20px;
+}
+
+.stock {
+    font-size: 25px;
+    padding-bottom: 20px;
+}
+
+.in-stock {
+    color: #007600;
+}
+
+.low-stock {
+    color: #e77600;
+}
+
+.out-of-stock {
+    color: #B12704;
+}
+
+.colors {
+    display: flex
+}
+
+.color-box {
+    margin: 10px 10px 0 0;
+    border-radius: 3px;
+    height: 36px;
+    width: 36px;
+}

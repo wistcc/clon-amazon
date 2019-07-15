@@ -4,11 +4,47 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" type="text/css" href="index.css"/>
 </head>
 
 <body>
+    <div class="nav-bar"></div>
     <div id="app">
-        {{ product }}
+      <div class="product">
+        <img
+          v-bind:src="product.colors[0].img"
+          class="img" />
+        <div class="details">
+          <h1>{{ product.name }}</h1>
+          <hr/>
+
+          <span
+            v-if="product.quantity > 50"
+            class="stock in-stock">
+            In Stock.
+          </span>
+          <span
+            v-else-if="product.quantity > 0 && product.quantity < 50"
+            class="stock low-stock">
+            Hurry! Almost over.
+          </span>
+          <span
+            v-else
+            class="stock out-of-stock">
+            Out of Stock.
+          </span>
+
+          <span>Select color:</span>
+          <div class="colors">
+            <span
+              v-for="color in product.colors"
+              v-bind:title="color.name"
+              v-bind:style="{ backgroundColor: color.code }"
+              class="color-box">
+            </span>
+          </div>
+        </div>
+      </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
