@@ -3,22 +3,34 @@ const app = new Vue({
     data: {
         product: {
             name: 'Echo Dot (3rd Gen) - Smart speaker with Alexa',
-            quantity: 100,
-            colors: [
+            selected: {
+                id: 1,
+                name: 'Charcoal',
+                color: '#38393e',
+                img: 'https://images-na.ssl-images-amazon.com/images/I/619HkSq0-mL._SL1000_.jpg',
+                quantity: 100,
+            },
+            models: [
                 {
+                    id: 1,
                     name: 'Charcoal',
-                    code: '#38393e',
+                    color: '#38393e',
                     img: 'https://images-na.ssl-images-amazon.com/images/I/619HkSq0-mL._SL1000_.jpg',
+                    quantity: 100,
                 },
                 {
+                    id: 2,
                     name: 'Heather Gray',
-                    code: '#696969',
+                    color: '#696969',
                     img: 'https://images-na.ssl-images-amazon.com/images/I/61lYMRN%2BCPL._SL1000_.jpg',
+                    quantity: 10,
                 },
                 {
+                    id: 3,
                     name: 'Sandstone',
-                    code: '#b3b3b3',
+                    color: '#b3b3b3',
                     img: 'https://images-na.ssl-images-amazon.com/images/I/619JBC0vjGL._SL1000_.jpg',
+                    quantity: 0,
                 },
             ]
         },

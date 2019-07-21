@@ -59,3 +59,9 @@ hr {
     height: 36px;
     width: 36px;
 }
+
+.color-selected {
+    height: 34px;
+    width: 34px;
+    border: 2px solid rgb(231, 118, 0);
+}

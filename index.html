@@ -12,19 +12,19 @@
     <div id="app">
       <div class="product">
         <img
-          v-bind:src="product.colors[0].img"
+          :src="product.selected.img"
           class="img" />
         <div class="details">
           <h1>{{ product.name }}</h1>
           <hr/>
 
           <span
-            v-if="product.quantity > 50"
+            v-if="product.selected.quantity > 50"
             class="stock in-stock">
             In Stock.
           </span>
           <span
-            v-else-if="product.quantity > 0 && product.quantity < 50"
+            v-else-if="product.selected.quantity > 0 && product.selected.quantity < 50"
             class="stock low-stock">
             Hurry! Almost over.
           </span>
@@ -34,13 +34,15 @@
             Out of Stock.
           </span>
 
-          <span>Select color:</span>
+          <span>Select model:</span>
           <div class="colors">
             <span
-              v-for="color in product.colors"
-              v-bind:title="color.name"
-              v-bind:style="{ backgroundColor: color.code }"
-              class="color-box">
+              v-for="model in product.models"
+              :key="model.id"
+              :title="model.name"
+              :style="{ backgroundColor: model.color }"
+              :class="{ 'color-box': true, 'color-selected': product.selected.id === model.id }"
+              @click="product.selected = model">
             </span>
           </div>
         </div>
