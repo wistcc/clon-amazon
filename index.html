@@ -11,39 +11,52 @@
     <div class="nav-bar"></div>
     <div id="app">
       <div class="product">
-        <img
-          :src="product.selected.img"
-          class="img" />
-        <div class="details">
-          <h1>{{ product.name }}</h1>
-          <hr/>
+        <div class="left-column">
+          <img
+            :src="selectedProductImg"
+            class="img" />
+        </div>
 
-          <span
-            v-if="product.selected.quantity > 50"
-            class="stock in-stock">
-            In Stock.
-          </span>
-          <span
-            v-else-if="product.selected.quantity > 0 && product.selected.quantity < 50"
-            class="stock low-stock">
-            Hurry! Almost over.
-          </span>
-          <span
-            v-else
-            class="stock out-of-stock">
-            Out of Stock.
-          </span>
+        <div class="center-column">
+          <div class="details">
+            <h1>{{ product.name }}</h1>
+            <hr/>
 
-          <span>Select model:</span>
-          <div class="colors">
             <span
-              v-for="model in product.models"
-              :key="model.id"
-              :title="model.name"
-              :style="{ backgroundColor: model.color }"
-              :class="{ 'color-box': true, 'color-selected': product.selected.id === model.id }"
-              @click="product.selected = model">
+              v-if="selectedProduct.quantity > 50"
+              class="stock in-stock">
+              In Stock.
             </span>
+            <span
+              v-else-if="selectedProduct.quantity > 0 && selectedProduct.quantity < 50"
+              class="stock low-stock">
+              Hurry! Almost over.
+            </span>
+            <span
+              v-else
+              class="stock out-of-stock">
+              Out of Stock.
+            </span>
+
+            <span>Model: <b>{{ selectedProduct.name }}</b></span>
+            <div class="colors">
+              <span
+                v-for="model in product.models"
+                :key="model.id"
+                :title="model.name"
+                :style="{ backgroundColor: model.color }"
+                :class="{ 'color-box': true, 'color-selected': selectedProduct.id === model.id }"
+                @click="selectProduct(model.id)"
+                @mouseenter="setPreviewModel(model.id)"
+                @mouseleave="clearPreviewModel">
+              </span>
+            </div>
+
+            <ul class="details">
+              <li v-for="detail in selectedProduct.details">
+                {{ detail }}
+              </li>
+            </ul>
           </div>
         </div>
       </div>

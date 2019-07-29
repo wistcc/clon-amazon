@@ -16,7 +16,8 @@ body {
     display: flex;
 }
 
-.details {
+.center-column {
+    width: 760px;
     display: flex;
     flex-direction: column;
 }
@@ -26,10 +27,13 @@ hr {
     margin-right: 0;
 }
 
+.left-column {
+    padding-right: 20px;
+}
+
 .img {
     height: 500px;
     width: 500px;
-    padding-right: 20px;
 }
 
 .stock {
@@ -64,4 +68,10 @@ hr {
     height: 34px;
     width: 34px;
     border: 2px solid rgb(231, 118, 0);
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+    padding-left: 15px;
 }
