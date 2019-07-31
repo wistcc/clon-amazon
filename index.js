@@ -3,6 +3,7 @@ const app = new Vue({
     data: {
         selectedProductId: undefined,
         previewProductId: undefined,
+        selectedImageIndex: 0,
         product: {
             name: 'Echo Dot (3rd Gen) - Smart speaker with Alexa',
             models: [
@@ -10,7 +11,14 @@ const app = new Vue({
                     id: 1,
                     name: 'Charcoal',
                     color: '#38393e',
-                    img: 'https://images-na.ssl-images-amazon.com/images/I/619HkSq0-mL._SL1000_.jpg',
+                    images: [
+                        'https://images-na.ssl-images-amazon.com/images/I/619HkSq0-mL._SL1000_.jpg',
+                        'https://images-na.ssl-images-amazon.com/images/I/61cSwIDSVbL._SL1000_.jpg',
+                        'https://images-na.ssl-images-amazon.com/images/I/61XRabsikKL._SL1000_.jpg',
+                        'https://images-na.ssl-images-amazon.com/images/I/61aMHiQ984L._SL1000_.jpg',
+                        'https://images-na.ssl-images-amazon.com/images/I/61fLi7StjWL._SL1000_.jpg',
+                        'https://images-na.ssl-images-amazon.com/images/I/61nk5XeIqbL._SL1000_.jpg',
+                    ],
                     quantity: 100,
                     details: [
                         'Our most popular smart speaker - Now with a fabric design and improved speaker for richer and louder sound.',
@@ -25,7 +33,14 @@ const app = new Vue({
                     id: 2,
                     name: 'Heather Gray',
                     color: '#696969',
-                    img: 'https://images-na.ssl-images-amazon.com/images/I/61lYMRN%2BCPL._SL1000_.jpg',
+                    images: [
+                        'https://images-na.ssl-images-amazon.com/images/I/61lYMRN%2BCPL._SL1000_.jpg',
+                        'https://images-na.ssl-images-amazon.com/images/I/61cSwIDSVbL._SL1000_.jpg',
+                        'https://images-na.ssl-images-amazon.com/images/I/61XRabsikKL._SL1000_.jpg',
+                        'https://images-na.ssl-images-amazon.com/images/I/61aMHiQ984L._SL1000_.jpg',
+                        'https://images-na.ssl-images-amazon.com/images/I/61fLi7StjWL._SL1000_.jpg',
+                        'https://images-na.ssl-images-amazon.com/images/I/61nk5XeIqbL._SL1000_.jpg',
+                    ],
                     quantity: 10,
                     details: [
                         'Our most popular smart speaker - Now with a fabric design and improved speaker for richer and louder sound.',
@@ -42,7 +57,14 @@ const app = new Vue({
                     id: 3,
                     name: 'Sandstone',
                     color: '#b3b3b3',
-                    img: 'https://images-na.ssl-images-amazon.com/images/I/619JBC0vjGL._SL1000_.jpg',
+                    images: [
+                        'https://images-na.ssl-images-amazon.com/images/I/619JBC0vjGL._SL1000_.jpg',
+                        'https://images-na.ssl-images-amazon.com/images/I/61cSwIDSVbL._SL1000_.jpg',
+                        'https://images-na.ssl-images-amazon.com/images/I/61XRabsikKL._SL1000_.jpg',
+                        'https://images-na.ssl-images-amazon.com/images/I/61aMHiQ984L._SL1000_.jpg',
+                        'https://images-na.ssl-images-amazon.com/images/I/61fLi7StjWL._SL1000_.jpg',
+                        'https://images-na.ssl-images-amazon.com/images/I/61nk5XeIqbL._SL1000_.jpg',
+                    ],
                     quantity: 0,
                     details: [
                         'Bigger, better sound - Pair with a second Echo Dot (3rd gen) for rich, stereo sound. Fill your home with music with compatible Echo devices in different rooms.',
@@ -65,20 +87,24 @@ const app = new Vue({
         },
         selectedProductImg() {
             if (this.previewProductId) {
-                return this.product.models.find(p => p.id === this.previewProductId).img
+                return this.product.models.find(p => p.id === this.previewProductId).images[0]
             }
-            return this.selectedProduct.img
+            return this.selectedProduct.images[this.selectedImageIndex]
         }
     },
     methods: {
         selectProduct(modelId) {
             this.selectedProductId = modelId
+            this.selectedImageIndex = 0
         },
         setPreviewModel(modelId) {
             this.previewProductId = modelId
         },
         clearPreviewModel() {
             this.previewProductId = undefined
-        }
+        },
+        selectImage(index) {
+            this.selectedImageIndex = index
+        },
     }
 })

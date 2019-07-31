@@ -12,6 +12,13 @@
     <div id="app">
       <div class="product">
         <div class="left-column">
+          <div class="sidebar-img">
+            <img
+              v-for="(img, index) in selectedProduct.images"
+              :src="img"
+              :class="{ 'side-img': true, 'img-selected': index === selectedImageIndex }"
+              @mouseenter="selectImage(index)" />
+          </div>
           <img
             :src="selectedProductImg"
             class="img" />
