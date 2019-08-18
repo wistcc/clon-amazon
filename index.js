@@ -4,6 +4,7 @@ const app = new Vue({
         selectedProductId: undefined,
         previewProductId: undefined,
         selectedImageIndex: 0,
+        cart: [],
         product: {
             name: 'Echo Dot (3rd Gen) - Smart speaker with Alexa',
             models: [
@@ -90,7 +91,10 @@ const app = new Vue({
                 return this.product.models.find(p => p.id === this.previewProductId).images[0]
             }
             return this.selectedProduct.images[this.selectedImageIndex]
-        }
+        },
+        cartAmount() {
+            return this.cart.length
+        },
     },
     methods: {
         selectProduct(modelId) {
@@ -105,6 +109,11 @@ const app = new Vue({
         },
         selectImage(index) {
             this.selectedImageIndex = index
+        },
+        addToCart() {
+            if (this.selectedProduct.quantity > 0) {
+                this.cart.push(this.selectedProduct)
+            }
         },
     }
 })
