@@ -9,78 +9,29 @@
 
 <body>
   <div id="app">
-    <div class="nav-bar">
-      <div class="cart">
-        <img src="./cart.png"/>
-        <span class="amount">{{ cartAmount }}</span>
-        <span class="description">Cart</span>
-      </div>
-    </div>
+    <nav-bar 
+      :cart-amount="cartAmount">
+    </nav-bar>
     <div class="product">
-      <div class="left-column">
-        <div class="sidebar-img">
-          <img
-            v-for="(img, index) in selectedProduct.images"
-            :src="img"
-            :class="{ 'side-img': true, 'img-selected': index === selectedImageIndex }"
-            @mouseenter="selectImage(index)" />
-        </div>
-        <img
-          :src="selectedProductImg"
-          class="img" />
-      </div>
+      <left-column
+        :images="selectedProduct.images"
+        :selected-image-index="selectedImageIndex"
+        :selected-product-img="selectedProductImg"
+        @select-image="selectImage">
+      </left-column>
 
-      <div class="center-column">
-        <div class="details">
-          <h1>{{ product.name }}</h1>
-          <hr/>
+      <center-column
+        :product="product"
+        :selected-product="selectedProduct"
+        @select-product="selectProduct"
+        @set-preview-model="setPreviewModel"
+        @clear-preview-model="clearPreviewModel">
+      </center-column>
 
-          <span
-            v-if="selectedProduct.quantity > 50"
-            class="stock in-stock">
-            In Stock.
-          </span>
-          <span
-            v-else-if="selectedProduct.quantity > 0 && selectedProduct.quantity < 50"
-            class="stock low-stock">
-            Hurry! Almost over.
-          </span>
-          <span
-            v-else
-            class="stock out-of-stock">
-            Out of Stock.
-          </span>
-
-          <span>Model: <b>{{ selectedProduct.name }}</b></span>
-          <div class="colors">
-            <span
-              v-for="model in product.models"
-              :key="model.id"
-              :title="model.name"
-              :style="{ backgroundColor: model.color }"
-              :class="{ 'color-box': true, 'color-selected': selectedProduct.id === model.id }"
-              @click="selectProduct(model.id)"
-              @mouseenter="setPreviewModel(model.id)"
-              @mouseleave="clearPreviewModel">
-            </span>
-          </div>
-
-          <ul class="details">
-            <li v-for="detail in selectedProduct.details">
-              {{ detail }}
-            </li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="right-column">
-        <button
-          class="add-to-cart"
-          v-show="this.selectedProduct.quantity > 0"
-          @click="addToCart">
-          Add to cart
-        </button>
-      </div>
+      <right-column
+        :selected-product="selectedProduct"
+        @add-to-cart="addToCart">
+      </right-column>
     </div>
   </div>
 
